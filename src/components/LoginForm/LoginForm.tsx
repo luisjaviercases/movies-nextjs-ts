@@ -2,6 +2,7 @@
 
 import { FC } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
+import styles from './LoginForm.module.scss';
 import Button from '@/components/Button/Button';
 import TextField from '@/components/TextField/TextField';
 
@@ -27,7 +28,7 @@ const LoginForm: FC<LoginFormProps> = ({ error, onSignIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <TextField
         type='text'
         placeholder='Username'
