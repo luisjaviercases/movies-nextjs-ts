@@ -1,0 +1,34 @@
+@import '@styles/_variables.scss';
+@import '@styles/_mixins.scss';
+
+.form {
+  background: $color-bg-primary;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 6.75rem 0.5rem;
+  max-width: 352px;
+  height: 394px;
+  width: 100%;
+
+  @mixin commonStyles {
+    padding: 6.75rem 1rem;
+  }
+  
+  @include tablet {
+    @include commonStyles;
+  }
+
+  @include smallDesktop {
+    @include commonStyles;
+  }
+  
+  @include desktop {
+    @include commonStyles;
+  }
+  
+  @include ultraDesktop {
+    @include commonStyles;
+  }
+}
