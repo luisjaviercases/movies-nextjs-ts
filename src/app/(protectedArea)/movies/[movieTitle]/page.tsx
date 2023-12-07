@@ -1,7 +1,13 @@
+'use client';
+
+import { useMovieContext } from '@/context/MovieContext';
+
 export default function MovieDetails() {
+  const { movieId } = useMovieContext();
+
   return (
-    <main>
-      <h1>Movie details</h1>
-    </main>
+    <>
+      <h1>Movie details {movieId}</h1>
+    </>
   );
 }
