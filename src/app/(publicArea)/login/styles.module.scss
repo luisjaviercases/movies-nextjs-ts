@@ -1,0 +1,33 @@
+@import '@styles/_mixins.scss';
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 1rem;
+
+  @mixin commonStyles {
+    justify-content: flex-end;
+  }
+  
+  @include tablet {
+    @include commonStyles;
+    padding: 0 2rem;
+  }
+
+  @include smallDesktop {
+    @include commonStyles;
+    padding: 0 2rem;
+  }
+  
+  @include desktop {
+    @include commonStyles;
+    padding: 0 7.5rem;
+  }
+  
+  @include ultraDesktop {
+    @include commonStyles;
+    padding: 0 8.125rem;
+  }
+}
