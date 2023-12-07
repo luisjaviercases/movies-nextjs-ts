@@ -1,11 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
 import styles from './BackgroundImage.module.scss';
 
 interface BackgroundImageProps {
   imageName: string;
 }
 
-const BackgroundImage: React.FC<BackgroundImageProps> = ({ imageName }) => {
+const BackgroundImage: FC<BackgroundImageProps> = ({ imageName }) => {
   const imageUrl = `/images/${imageName}`;
 
   const style: React.CSSProperties = {
