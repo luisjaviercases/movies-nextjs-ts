@@ -3,10 +3,22 @@
 import styles from './styles.module.scss';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 import LoginForm from '@/components/LoginForm/LoginForm';
+import { useAuthSignInMutation } from '@/services/query/authApi';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  const [login] = useAuthSignInMutation();
+  const router = useRouter();
+
   const onSignIn = async (values: { username: string; password: string }) => {
-    console.log('onSignIn', values);
+    try {
+      // Make login request
+      const { token } = await login({ email: values.username, password: values.password }).unwrap();
+      console.log('TOKEN', token);
+      router.push('/');
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
