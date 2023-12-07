@@ -1,5 +1,6 @@
 'use client';
 
+import styles from './styles.module.scss';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 import LoginForm from '@/components/LoginForm/LoginForm';
 
@@ -11,7 +12,7 @@ export default function Login() {
   return (
     <main>
       <BackgroundImage imageName='login_background.png' />
-      <div>
+      <div className={styles.container}>
         <LoginForm onSignIn={onSignIn} />
       </div>
     </main>
