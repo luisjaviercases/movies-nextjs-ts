@@ -5,6 +5,7 @@ import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 import LoginForm from '@/components/LoginForm/LoginForm';
 import { useAuthSignInMutation } from '@/services/query/authApi';
 import { useRouter } from 'next/navigation';
+import createCookie from '@/app/actions';
 
 export default function Login() {
   const [login] = useAuthSignInMutation();
@@ -14,7 +15,7 @@ export default function Login() {
     try {
       // Make login request
       const { token } = await login({ email: values.username, password: values.password }).unwrap();
-      console.log('TOKEN', token);
+      await createCookie('userToken', token, { httpOnly: true, path: '/' });
       router.push('/');
     } catch (error) {
       console.error('Error:', error);
