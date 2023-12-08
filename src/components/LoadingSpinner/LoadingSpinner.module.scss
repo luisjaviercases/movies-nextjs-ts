@@ -1,0 +1,42 @@
+@import '@styles/_variables.scss';
+
+.container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+
+  &__overlay {
+    background-color: $color-bg-primary;
+    height: 100%;
+    left: 0;
+    opacity: 0.7;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9998;
+  }
+  
+  &__spinner {
+    animation: spinner-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border: 8px solid $color-primary;
+    border-radius: 50%;
+    border-top: 8px solid transparent;
+    height: 40px;
+    width: 40px;
+    z-index: 9999;
+    
+  }
+}
+
+@keyframes spinner-animation {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+}
