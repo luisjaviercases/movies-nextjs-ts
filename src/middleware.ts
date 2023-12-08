@@ -1,17 +1,36 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { publicRoutes } from '@/router/routes';
+import { publicRoutes, apiPath } from './router/routes';
 
 export function middleware(request: NextRequest) {
   const currentUser = request.cookies.get('userToken')?.value;
+  const pathname = request.nextUrl.pathname;
 
-  if (!currentUser && !publicRoutes.includes(request.nextUrl.pathname)) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  if (!currentUser && !pathname.startsWith(apiPath)) {
+    request.cookies.delete('userToken');
+    const response = NextResponse.redirect(new URL('/login', request.url));
+    response.cookies.delete('userToken');
+
+    return response;
   }
 
-  return NextResponse.next();
+  if (currentUser) {
+    if (publicRoutes.includes(request.nextUrl.pathname)) {
+      return NextResponse.redirect(new URL('/', request.url));
+    }
+
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('Authorization', `Bearer ${currentUser}`);
+    const response = NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+
+    return response;
+  }
 }
 
 export const config = {
-  matcher: ['/', '/login', '/movies/:path*', '/films/:path*'],
+  matcher: ['/movies/:path*', '/films/:path*', '/'],
 };
