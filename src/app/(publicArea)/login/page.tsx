@@ -6,9 +6,10 @@ import LoginForm from '@/components/LoginForm/LoginForm';
 import { useAuthSignInMutation } from '@/services/query/authApi';
 import { useRouter } from 'next/navigation';
 import createCookie from '@/app/actions';
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 
 export default function Login() {
-  const [login] = useAuthSignInMutation();
+  const [login, { isLoading }] = useAuthSignInMutation();
   const router = useRouter();
 
   const onSignIn = async (values: { username: string; password: string }) => {
@@ -25,6 +26,7 @@ export default function Login() {
   return (
     <main>
       <BackgroundImage imageName='login_background.png' />
+      {isLoading && <LoadingSpinner />}
       <div className={styles.container}>
         <LoginForm onSignIn={onSignIn} />
       </div>
