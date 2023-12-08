@@ -2,10 +2,14 @@
 
 import Sample from '@/components/Sample/Sample';
 import { useMovieContext } from '@/context/MovieContext';
+import { useGetMoviesQuery } from '@/services/query/moviesApi';
 import Link from 'next/link';
 
 export default function Home() {
+  const { data: movies } = useGetMoviesQuery();
   const { setMovieContext } = useMovieContext();
+
+  console.log('Movies', movies);
 
   const handleMovieClick = (movieId: number) => {
     setMovieContext(movieId);
