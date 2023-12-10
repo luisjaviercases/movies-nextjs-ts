@@ -1,0 +1,21 @@
+@import '@styles/_variables.scss';
+
+.button {
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+
+  &__text {
+    font-weight: 700;
+    line-height: 1.188rem;
+    color: $color-text;
+    margin-top: 1rem;
+
+    &__fav {
+      margin-top: 0.75rem;
+    }
+  }
+}
