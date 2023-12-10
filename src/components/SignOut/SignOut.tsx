@@ -45,7 +45,7 @@ const SignOut: FC = () => {
       ) : (
         <div className={styles.container}>
           <div className={styles['container__icon']} onMouseEnter={handleIconHover} onMouseLeave={handleIconLeave}>
-            <Image src={`./icons/icon-user.svg`} alt='Icon user' width='38' height='38' />
+            <Image src={`/icons/icon-user.svg`} alt='Icon user' width='38' height='38' />
           </div>
           {isButtonVisible && (
             <div className={styles['container__custom-button']}>
