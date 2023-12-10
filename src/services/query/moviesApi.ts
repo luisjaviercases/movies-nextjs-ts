@@ -5,11 +5,17 @@ export const moviesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getMovies: builder.query<Movie[], void>({
       query: () => ({
-        url: 'films/movies',
+        url: '/films/movies',
+        method: 'GET',
+      }),
+    }),
+    getMovieById: builder.query<Movie, string | null>({
+      query: (id) => ({
+        url: `/films/movies/${id}`,
         method: 'GET',
       }),
     }),
   }),
 });
 
-export const { useGetMoviesQuery } = moviesApi;
+export const { useGetMoviesQuery, useGetMovieByIdQuery } = moviesApi;
