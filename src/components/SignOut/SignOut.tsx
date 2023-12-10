@@ -38,15 +38,25 @@ const SignOut: FC = () => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'Enter') {
+      isButtonVisible ? handleIconLeave() : handleIconHover();
+    }
+  };
+
   return (
     <>
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         <div className={styles.container}>
-          <div className={styles['container__icon']} onMouseEnter={handleIconHover} onMouseLeave={handleIconLeave}>
+          <button
+            className={styles['container__icon']}
+            onMouseEnter={handleIconHover}
+            onMouseLeave={handleIconLeave}
+            onKeyDown={handleKeyDown}>
             <Image src={`/icons/icon-user.svg`} alt='Icon user' width='38' height='38' />
-          </div>
+          </button>
           {isButtonVisible && (
             <div className={styles['container__custom-button']}>
               <Button onMouseEnter={handleIconHover} onMouseLeave={handleIconLeave} onClick={handleButtonClick}>
