@@ -3,8 +3,8 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface MovieContextType {
-  movieId: number | null;
-  setMovieContext: (id: number) => void;
+  movieId: string | null;
+  setMovieContext: (id: string) => void;
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -14,9 +14,9 @@ interface MovieProviderProps {
 }
 
 export const MovieProvider: React.FC<MovieProviderProps> = ({ children }) => {
-  const [movieId, setMovieId] = useState<number | null>(null);
+  const [movieId, setMovieId] = useState<string | null>(null);
 
-  const setMovieContext = (id: number) => {
+  const setMovieContext = (id: string) => {
     setMovieId(id);
   };
 
