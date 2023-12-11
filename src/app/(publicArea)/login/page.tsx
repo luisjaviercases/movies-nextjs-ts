@@ -1,15 +1,15 @@
 'use client';
 
-import styles from './styles.module.scss';
+import styles from './page.module.scss';
 import BackgroundImage from '@/components/BackgroundImage/BackgroundImage';
 import LoginForm from '@/components/LoginForm/LoginForm';
 import { useAuthSignInMutation } from '@/services/query/authApi';
 import { useRouter } from 'next/navigation';
-import createCookie from '@/app/actions';
+import { createCookie } from '@/app/actions';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 
 export default function Login() {
-  const [login, { isLoading }] = useAuthSignInMutation();
+  const [login, { isLoading, isError }] = useAuthSignInMutation();
   const router = useRouter();
 
   const onSignIn = async (values: { username: string; password: string }) => {
@@ -25,11 +25,16 @@ export default function Login() {
 
   return (
     <main>
-      <BackgroundImage imageName='login_background.png' />
-      {isLoading && <LoadingSpinner />}
-      <div className={styles.container}>
-        <LoginForm onSignIn={onSignIn} />
-      </div>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <BackgroundImage imageName='login_background.png' />
+          <div className={styles.container}>
+            <LoginForm onSignIn={onSignIn} error={isError} />
+          </div>
+        </>
+      )}
     </main>
   );
 }
