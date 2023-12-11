@@ -10,7 +10,7 @@ interface HeroImageProps {
 const HeroImage: FC<HeroImageProps> = ({ src, alt }) => {
   return (
     <div className={styles['container']}>
-      <Image className={styles['container__image']} priority fill src={src} alt={alt} />
+      <Image className={styles['container__image']} priority fill src={src} alt={alt} data-testid='hero-image--img' />
     </div>
   );
 };
