@@ -25,10 +25,12 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({ movieId, moviesList }) => {
   const handleButtonClick = async () => {
     try {
       const result = isFavorited ? await removeMovieFromList(id) : await addMovieToList({ id: id });
-      if ('data' in result) {
-        checkIfIdIsInFavoritesList(result.data.myList);
-      } else {
-        console.error('Error:', result.error);
+      if (result) {
+        if ('data' in result) {
+          checkIfIdIsInFavoritesList(result.data.myList);
+        } else {
+          console.error('Error:', result.error);
+        }
       }
     } catch (error) {
       console.error('Error:', error);
@@ -40,7 +42,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({ movieId, moviesList }) => {
       {isLoadingAddToList || isLoadingRemoveFromList ? (
         <LoadingSpinner />
       ) : (
-        <button className={styles.button} onClick={handleButtonClick}>
+        <button className={styles.button} onClick={handleButtonClick} data-testid='favorite-button'>
           {isFavorited ? (
             <>
               <Image src={`/icons/icon-remove.svg`} alt='Remove from my list button' width='38' height='36' />
