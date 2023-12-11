@@ -15,26 +15,13 @@
   }
   
   @include desktop {
+    height: 800px;
     padding: 9rem 7.5rem;
   }
   
   @include ultraDesktop {
+    height: 800px;
     padding: 9rem 7.5rem;
-  }
-
-  &__images {
-    height: 600px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    z-index: -1;
-
-    &__image {
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
-    }
   }
 
   &__content {
@@ -186,15 +173,5 @@
     &__bullet--active {
       background-color: $color-white;
     }
-  }
-}
-
-.container, .container__images {  
-  @include desktop {
-    height: 800px;
-  }
-  
-  @include ultraDesktop {
-    height: 800px;
   }
 }
