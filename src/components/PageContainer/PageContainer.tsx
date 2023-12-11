@@ -6,7 +6,11 @@ interface PageContainerProps {
 }
 
 const PageContainer: FC<PageContainerProps> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div className={styles.container} data-testid='page-container'>
+      {children}
+    </div>
+  );
 };
 
 export default PageContainer;
