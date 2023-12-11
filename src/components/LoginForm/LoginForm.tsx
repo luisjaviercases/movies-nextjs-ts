@@ -28,7 +28,7 @@ const LoginForm: FC<LoginFormProps> = ({ error, onSignIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form} data-testid='login-form'>
       <TextField
         type='text'
         placeholder='Username'
@@ -44,7 +44,7 @@ const LoginForm: FC<LoginFormProps> = ({ error, onSignIn }) => {
         errorMessage={errors.password && errors.password.message}
       />
 
-      <Button>Sign In</Button>
+      <Button data-testid='login-form--button'>Sign In</Button>
       {error && <span className={styles['form__error-message']}>Entered username and/or password are not valids</span>}
     </form>
   );
