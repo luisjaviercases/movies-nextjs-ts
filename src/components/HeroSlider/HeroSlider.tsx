@@ -1,10 +1,12 @@
 'use client';
 
 import { Movie } from '@/models/movie';
-import Image from 'next/image';
+import { useMovieContext } from '@/context/MovieContext';
 import React, { useState, useEffect } from 'react';
 import Button from '@/components/Button/Button';
 import styles from './HeroSlider.module.scss';
+import HeroImage from '@/components/HeroImage/HeroImage';
+import { useRouter } from 'next/navigation';
 
 interface HeroSliderProps {
   movies: Movie[];
@@ -12,7 +14,9 @@ interface HeroSliderProps {
 }
 
 const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 3000 }) => {
+  const router = useRouter();
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const { setMovieContext } = useMovieContext();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,22 +32,19 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 3000 }) => {
     setActiveIndex(index);
   };
 
+  const handleButtonClick = (movieId: string) => {
+    setMovieContext(movieId);
+    router.push(`/movies/${currentMovie.title}`);
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles['container__images']}>
-        <Image
-          className={styles['container__images__image']}
-          priority
-          fill
-          src={currentMovie.poster}
-          alt={`${currentMovie.title} poster film`}
-        />
-      </div>
+      <HeroImage src={currentMovie.poster} alt={`${currentMovie.title} poster film`} />
       <div className={styles['container__content']}>
         <h1 className={styles['container__content__title']}>{currentMovie.title}</h1>
         <p className={styles['container__content__description']}>{currentMovie.description}</p>
         <div className={styles['container__content__custom-button']}>
-          <Button>Discover</Button>
+          <Button onClick={() => handleButtonClick(currentMovie.id)}>Discover</Button>
         </div>
       </div>
       <div className={styles['container__bullets']}>
