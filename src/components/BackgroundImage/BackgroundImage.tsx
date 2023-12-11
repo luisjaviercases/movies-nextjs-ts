@@ -12,7 +12,7 @@ const BackgroundImage: FC<BackgroundImageProps> = ({ imageName }) => {
     backgroundImage: `url(${imageUrl})`,
   };
 
-  return <div className={styles.background} style={{ ...style }}></div>;
+  return <div className={styles.background} style={{ ...style }} data-testid='background-image'></div>;
 };
 
 export default BackgroundImage;
