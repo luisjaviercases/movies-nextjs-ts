@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import TextField from './TextField';
 
 describe('Component: TextField component', () => {
-  it('should render correctlyt', () => {
+  it('should render component', () => {
     const { container } = render(<TextField placeholder='Username' />);
     const inputElement = container.querySelector('input');
 

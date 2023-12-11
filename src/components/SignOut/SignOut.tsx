@@ -49,12 +49,13 @@ const SignOut: FC = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid='signout'>
           <button
             className={styles['container__icon']}
             onMouseEnter={handleIconHover}
             onMouseLeave={handleIconLeave}
-            onKeyDown={handleKeyDown}>
+            onKeyDown={handleKeyDown}
+            data-testid='signout--icon-button'>
             <Image src={`/icons/icon-user.svg`} alt='Icon user' width='38' height='38' />
           </button>
           {isButtonVisible && (
