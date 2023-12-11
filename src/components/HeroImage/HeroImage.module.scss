@@ -1,0 +1,34 @@
+@import '@styles/_variables.scss';
+@import '@styles/_mixins.scss';
+
+.container {
+  height: 600px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  z-index: -1;
+
+  @include desktop {
+    height: 800px;
+  }
+    
+  @include ultraDesktop {
+    height: 800px;
+  }
+
+  &__image {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &:after {
+    background-color: $color-overlay;
+    content: "";
+    height: 100%;
+    opacity: 0.2;
+    position: absolute;
+    width: 100%;
+  }
+}
