@@ -7,7 +7,7 @@ import Button from '@/components/Button/Button';
 import TextField from '@/components/TextField/TextField';
 
 interface LoginFormProps {
-  error?: string | null;
+  error?: boolean;
   onSignIn: (values: { username: string; password: string }) => void;
 }
 
@@ -45,7 +45,7 @@ const LoginForm: FC<LoginFormProps> = ({ error, onSignIn }) => {
       />
 
       <Button>Sign In</Button>
-      {error && <span>Entered username and/or password are not valids</span>}
+      {error && <span className={styles['form__error-message']}>Entered username and/or password are not valids</span>}
     </form>
   );
 };
