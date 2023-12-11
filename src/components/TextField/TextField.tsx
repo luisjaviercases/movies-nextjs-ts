@@ -9,7 +9,7 @@ const TextField: ForwardRefRenderFunction<HTMLInputElement, TextFieldProps> = ({
   return (
     <div className={styles.container}>
       <input {...rest} ref={ref} className={styles['container__input']} />
-      {errorMessage && <span className={styles['container__errorMessage']}>{errorMessage}</span>}
+      {errorMessage && <span className={styles['container__error-message']}>{errorMessage}</span>}
     </div>
   );
 };

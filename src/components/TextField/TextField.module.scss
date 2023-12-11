@@ -28,9 +28,9 @@
     }
   }
 
-  &__errorMessage {
-    color: rgb(255, 82, 82);
-    font-size: 12px;
-    margin-top: 8px;
+  &__error-message {
+    color: $color-error;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
   }
 }
