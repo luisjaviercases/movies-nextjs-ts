@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState, useRef } from 'react';
+import { FC, useState, useRef, KeyboardEvent } from 'react';
 import Image from 'next/image';
 import Button from '@/components/Button/Button';
 import styles from './SignOut.module.scss';
@@ -38,7 +38,7 @@ const SignOut: FC = () => {
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'Enter') {
       isButtonVisible ? handleIconLeave() : handleIconHover();
     }
