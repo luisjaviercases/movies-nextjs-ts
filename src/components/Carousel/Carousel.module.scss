@@ -1,0 +1,99 @@
+@import '@styles/_mixins.scss';
+
+$mobile_parent-padding-left: 1rem;
+$mobile_parent-padding-right: 1rem;
+$tablet_parent-padding-left: 2rem;
+$tablet_parent-padding-right: 2rem;
+$desktop_parent-padding-left: 7.5rem;
+$desktop_parent-padding-right: 7.5rem;
+$ultra-desktop_parent-padding-left: 8.125rem;
+$ultra-desktop_parent-padding-right: 8.125rem;
+
+.container {
+  display: flex;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
+  scroll-behavior: smooth;
+  gap: 2rem;
+  width: calc(100% + $mobile_parent-padding-left);
+  margin-left: -$mobile_parent-padding-left;
+  scroll-padding-left: $mobile_parent-padding-left;
+
+  @include tablet {
+    width: calc(100% + $tablet_parent-padding-left);
+    margin-left: -$tablet_parent-padding-left;
+    scroll-padding-left: $tablet_parent-padding-left;
+  }
+
+  @include smallDesktop {
+    width: calc(100% + $tablet_parent-padding-left);
+    margin-left: -$tablet_parent-padding-left;
+    scroll-padding-left: $tablet_parent-padding-left;
+  }
+  
+  @include desktop {
+    width: calc(100% + $desktop_parent-padding-left);
+    margin-left: -$desktop_parent-padding-left;
+    scroll-padding-left: $desktop_parent-padding-left;
+  }
+  
+  @include ultraDesktop {
+    width: calc(100% + $ultra-desktop_parent-padding-left);
+    margin-left: -$ultra-desktop_parent-padding-left;
+    scroll-padding-left: $ultra-desktop_parent-padding-left;
+  }
+
+  &::-webkit-scrollbar {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__item {
+    scroll-snap-align: start;
+
+    &__img {
+      border-radius: 1rem;
+    }
+
+    &:first-child {
+      margin-left: $mobile_parent-padding-left;
+
+      @include tablet {
+        margin-left: $tablet_parent-padding-left;
+      }
+    
+      @include smallDesktop {
+        margin-left: $tablet_parent-padding-left;
+      }
+      
+      @include desktop {
+        margin-left: $desktop_parent-padding-left;
+      }
+      
+      @include ultraDesktop {
+        margin-left: $ultra-desktop_parent-padding-left;
+      }
+    }
+
+    &:last-child {
+      margin-right: $mobile_parent-padding-right;
+
+      @include tablet {
+        margin-right: $tablet_parent-padding-right;
+      }
+    
+      @include smallDesktop {
+        margin-right: $tablet_parent-padding-right;
+      }
+      
+      @include desktop {
+        margin-right: $desktop_parent-padding-right;
+      }
+      
+      @include ultraDesktop {
+        margin-right: $ultra-desktop_parent-padding-right;
+      }
+    }
+  }
+}
