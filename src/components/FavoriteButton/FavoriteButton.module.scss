@@ -9,9 +9,9 @@
   flex-direction: column;
 
   &__text {
+    color: $color-text;
     font-weight: 700;
     line-height: 1.188rem;
-    color: $color-text;
     margin-top: 1rem;
 
     &__fav {
