@@ -9,6 +9,7 @@ import { Movie } from '@/models/movie';
 import { useGetGenresQuery } from '@/services/query/genresApi';
 import { useGetMoviesQuery } from '@/services/query/moviesApi';
 import { useGetUserMoviesListQuery } from '@/services/query/userApi';
+import { useMovieContext } from '@/context/MovieContext';
 import styles from './page.module.scss';
 import Carousel from '@/components/Carousel/Carousel';
 
@@ -22,6 +23,7 @@ export default function Home() {
     isFetching: isFetchingUserMoviesList,
     refetch: refetchUserMoviesList,
   } = useGetUserMoviesListQuery();
+  const { setMovieIdContext, setListOfMovieIdsContext } = useMovieContext();
 
   useEffect(() => {
     refetchUserMoviesList();
@@ -47,13 +49,18 @@ export default function Home() {
     setSelectedGenre(selectedGenre === genreId ? null : genreId);
   };
 
+  const saveDataToContext = (movieId: string) => {
+    setMovieIdContext(movieId);
+    setListOfMovieIdsContext(userMoviesList ?? []);
+  };
+
   return (
     <>
       {isLoadingMovies || isLoadingGenres || isLoadingUserMoviesList || isFetchingUserMoviesList ? (
         <LoadingSpinner />
       ) : (
         <>
-          <HeroSlider movies={highlightedMovies} />
+          <HeroSlider movies={highlightedMovies} onButtonClick={saveDataToContext} />
           <PageContainer>
             <div className={styles['filter-buttons']}>
               {genres?.map((genre) => (
@@ -73,7 +80,7 @@ export default function Home() {
                   {selectedGenre === null || selectedGenre === genre.id ? (
                     <div className={styles['carousel-list__container']}>
                       <h2 className={styles['carousel-list__container__title']}>{genre.name}</h2>
-                      <Carousel movies={moviesByGenre[genre.id]} />
+                      <Carousel movies={moviesByGenre[genre.id]} onLinkClick={saveDataToContext} />
                     </div>
                   ) : null}
                 </div>
@@ -82,7 +89,7 @@ export default function Home() {
               {filteredMovies.length > 0 && (
                 <div className={styles['carousel-list__container']}>
                   <h2 className={styles['carousel-list__container__title']}>My List</h2>
-                  <Carousel movies={filteredMovies} />
+                  <Carousel movies={filteredMovies} onLinkClick={saveDataToContext} />
                 </div>
               )}
             </div>
