@@ -4,7 +4,9 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface MovieContextType {
   movieId: string | null;
-  setMovieContext: (id: string) => void;
+  listOfMovieIds: string[];
+  setMovieIdContext: (id: string) => void;
+  setListOfMovieIdsContext: (listOfMovieIds: string[]) => void;
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -15,12 +17,21 @@ interface MovieProviderProps {
 
 export const MovieProvider: React.FC<MovieProviderProps> = ({ children }) => {
   const [movieId, setMovieId] = useState<string | null>(null);
+  const [listOfMovieIds, setListOfMovieIds] = useState<string[]>([]);
 
-  const setMovieContext = (id: string) => {
+  const setMovieIdContext = (id: string | null) => {
     setMovieId(id);
   };
 
-  return <MovieContext.Provider value={{ movieId, setMovieContext }}>{children}</MovieContext.Provider>;
+  const setListOfMovieIdsContext = (listOfMovieIds: string[]) => {
+    setListOfMovieIds(listOfMovieIds);
+  };
+
+  return (
+    <MovieContext.Provider value={{ movieId, listOfMovieIds, setMovieIdContext, setListOfMovieIdsContext }}>
+      {children}
+    </MovieContext.Provider>
+  );
 };
 
 export const useMovieContext = (): MovieContextType => {
