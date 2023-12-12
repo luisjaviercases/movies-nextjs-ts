@@ -1,0 +1,88 @@
+@import '@styles/_mixins.scss';
+@import '@styles/_variables.scss';
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  max-width: 100vw;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 2rem;
+
+  @include tablet {
+    margin-bottom: 2.5rem;
+  }
+
+  @include smallDesktop {
+    margin-bottom: 2.5rem;
+  }
+  
+  @include desktop {
+    margin-bottom: 4rem;
+  }
+  
+  @include ultraDesktop {
+    margin-bottom: 4rem;
+  }
+
+  &__button-container {
+    display: grid;
+    min-width: 7.813rem;
+  }
+
+  &::-webkit-scrollbar {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.carousel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  @include tablet {
+    gap: 2.5em;
+  }
+
+  @include smallDesktop {
+    gap: 2.5em;
+  }
+  
+  @include desktop {
+    gap: 2.5em;
+  }
+  
+  @include ultraDesktop {
+    gap: 2.5em;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  
+    &__title {
+      font-weight: 700;
+      font-size: 2.5rem;
+      line-height: 3rem;
+      color: $color-white;
+      margin-bottom: 1.5rem;
+  
+      @include tablet {
+        margin-bottom: 2rem;
+      }
+    
+      @include smallDesktop {
+        margin-bottom: 2rem;
+      }
+      
+      @include desktop {
+        margin-bottom: 2rem;
+      }
+      
+      @include ultraDesktop {
+        margin-bottom: 2rem;
+      }
+    }
+  }  
+}
