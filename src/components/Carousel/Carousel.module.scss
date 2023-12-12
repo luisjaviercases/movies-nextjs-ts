@@ -16,31 +16,36 @@ $ultra-desktop_parent-padding-right: 8.125rem;
   cursor: grab;
   scroll-behavior: smooth;
   gap: 2rem;
-  width: calc(100% + $mobile_parent-padding-left);
+  width: calc(100% + ($mobile_parent-padding-left + $mobile_parent-padding-right));
   margin-left: -$mobile_parent-padding-left;
+  margin-right: -$mobile_parent-padding-right;
   scroll-padding-left: $mobile_parent-padding-left;
 
   @include tablet {
-    width: calc(100% + $tablet_parent-padding-left);
+    width: calc(100% + ($tablet_parent-padding-left + $tablet_parent-padding-right));
     margin-left: -$tablet_parent-padding-left;
+    margin-right: -$tablet_parent-padding-right;
     scroll-padding-left: $tablet_parent-padding-left;
   }
 
   @include smallDesktop {
-    width: calc(100% + $tablet_parent-padding-left);
+    width: calc(100% + ($tablet_parent-padding-left + $tablet_parent-padding-right));
     margin-left: -$tablet_parent-padding-left;
+    margin-right: -$tablet_parent-padding-right;
     scroll-padding-left: $tablet_parent-padding-left;
   }
   
   @include desktop {
-    width: calc(100% + $desktop_parent-padding-left);
+    width: calc(100% + ($desktop_parent-padding-left + $desktop_parent-padding-right));
     margin-left: -$desktop_parent-padding-left;
+    margin-right: -$desktop_parent-padding-right;
     scroll-padding-left: $desktop_parent-padding-left;
   }
   
   @include ultraDesktop {
-    width: calc(100% + $ultra-desktop_parent-padding-left);
+    width: calc(100% + ($ultra-desktop_parent-padding-left + $ultra-desktop_parent-padding-right));
     margin-left: -$ultra-desktop_parent-padding-left;
+    margin-right: -$ultra-desktop_parent-padding-right;
     scroll-padding-left: $ultra-desktop_parent-padding-left;
   }
 
