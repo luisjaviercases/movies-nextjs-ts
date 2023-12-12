@@ -26,8 +26,10 @@ export default function MovieDetails() {
   const actionButtons = () => {
     return (
       <>
-        <Button variant='secondary'>Trailer</Button>
-        {!isComingSoonMovie && <Button>Play</Button>}
+        <Button variant='secondary' size='big'>
+          Trailer
+        </Button>
+        {!isComingSoonMovie && <Button size='big'>Play</Button>}
       </>
     );
   };
