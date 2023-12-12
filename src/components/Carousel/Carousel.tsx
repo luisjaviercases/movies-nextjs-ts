@@ -11,10 +11,17 @@ interface CarouselProps {
   movies: Movie[];
   imageWidth?: number;
   imageHeight?: number;
+  showPoster?: boolean;
   onLinkClick?: (movieId: string) => void;
 }
 
-const Carousel: FC<CarouselProps> = ({ movies, onLinkClick, imageWidth = 261, imageHeight = 386 }) => {
+const Carousel: FC<CarouselProps> = ({
+  movies,
+  onLinkClick,
+  imageWidth = 261,
+  imageHeight = 386,
+  showPoster = false,
+}) => {
   const galleryRef = useHorizontalScroll();
 
   const handleMovieClick = (movieId: string) => {
@@ -34,7 +41,7 @@ const Carousel: FC<CarouselProps> = ({ movies, onLinkClick, imageWidth = 261, im
             className={styles['container__item__img']}
             width={imageWidth}
             height={imageHeight}
-            src={movie.thumbnail}
+            src={showPoster ? movie.poster : movie.thumbnail}
             alt={`Image ${movie.title}`}
           />
         </Link>
