@@ -51,29 +51,37 @@
     }
 
     &__title {
+      display: -webkit-box;
       font-size: 3.375rem;
       font-weight: 700;
       line-height: 3.375rem;
+      overflow: hidden;
       text-transform: uppercase;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
       
       @include tablet {
         font-size: 4.75rem;
         line-height: 4.688rem;
+        -webkit-line-clamp: 2;
       }
     
       @include smallDesktop {
         font-size: 4.75rem;
         line-height: 4.688rem;
+        -webkit-line-clamp: 2;
       }
       
       @include desktop {
         font-size: 8rem;
         line-height: 8.125rem;
+        -webkit-line-clamp: 3;
       }
       
       @include ultraDesktop {
         font-size: 8rem;
         line-height: 8.125rem;
+        -webkit-line-clamp: 3;
       }
     }
 
