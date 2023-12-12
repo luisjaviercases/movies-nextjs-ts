@@ -95,6 +95,7 @@ export default function Home() {
                     imageWidth={400}
                     imageHeight={260}
                     onLinkClick={saveDataToContext}
+                    showPoster
                   />
                 </div>
               )}
