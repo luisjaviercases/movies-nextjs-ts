@@ -12,6 +12,7 @@ import { useGetMovieByIdQuery } from '@/services/query/moviesApi';
 import { useGetGenresQuery } from '@/services/query/genresApi';
 import { useGetUserMoviesListQuery } from '@/services/query/userApi';
 import styles from './page.module.scss';
+import Link from 'next/link';
 
 export default function MovieDetails() {
   const { movieId } = useMovieContext();
@@ -70,7 +71,17 @@ export default function MovieDetails() {
               </PageContainer>
             </>
           ) : (
-            <span>NO HAY DATOS</span>
+            <PageContainer>
+              <div className={styles.content}>
+                <p className={styles['content__description']}>
+                  No data loaded, please return to{' '}
+                  <Link className={styles['content__link']} href={'/'}>
+                    main
+                  </Link>{' '}
+                  page and try again
+                </p>
+              </div>
+            </PageContainer>
           )}
         </>
       )}
