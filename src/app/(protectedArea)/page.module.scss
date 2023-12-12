@@ -1,6 +1,11 @@
 @import '@styles/_mixins.scss';
 @import '@styles/_variables.scss';
 
+$mobile_parent-padding-left: 1rem;
+$mobile_parent-padding-right: 1rem;
+$tablet_parent-padding-left: 2rem;
+$tablet_parent-padding-right: 2rem;
+
 .filter-buttons {
   display: flex;
   gap: 1rem;
@@ -8,13 +13,22 @@
   overflow: auto;
   scroll-snap-type: x mandatory;
   margin-bottom: 2rem;
+  width: calc(100% + ($mobile_parent-padding-left + $mobile_parent-padding-right));
+  margin-left: -$mobile_parent-padding-left;
+  margin-right: -$mobile_parent-padding-right;
 
   @include tablet {
+    width: calc(100% + ($tablet_parent-padding-left + $tablet_parent-padding-right));
     margin-bottom: 2.5rem;
+    margin-left: -$tablet_parent-padding-left;
+    margin-right: -$tablet_parent-padding-right;
   }
 
   @include smallDesktop {
+    width: calc(100% + ($tablet_parent-padding-left + $tablet_parent-padding-right));
     margin-bottom: 2.5rem;
+    margin-left: -$tablet_parent-padding-left;
+    margin-right: -$tablet_parent-padding-right;
   }
   
   @include desktop {
@@ -28,6 +42,30 @@
   &__button-container {
     display: grid;
     min-width: 7.813rem;
+
+    &:first-child {
+      margin-left: $mobile_parent-padding-left;
+  
+      @include tablet {
+        margin-left: $tablet_parent-padding-left;
+      }
+    
+      @include smallDesktop {
+        margin-left: $tablet_parent-padding-left;
+      }
+    }
+  
+    &:last-child {
+      margin-right: $mobile_parent-padding-right;
+  
+      @include tablet {
+        margin-right: $tablet_parent-padding-right;
+      }
+    
+      @include smallDesktop {
+        margin-right: $tablet_parent-padding-right;
+      }
+    }
   }
 
   &::-webkit-scrollbar {
