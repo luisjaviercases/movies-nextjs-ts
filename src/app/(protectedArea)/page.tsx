@@ -23,13 +23,15 @@ export default function Home() {
     isFetching: isFetchingUserMoviesList,
     refetch: refetchUserMoviesList,
   } = useGetUserMoviesListQuery();
-  const { setMovieIdContext, setListOfMovieIdsContext } = useMovieContext();
+  const { setMovieIdContext } = useMovieContext();
+
+  const moviesByGenre: Record<string, Movie[]> = {};
+  const showLoadingSpinner = isLoadingMovies || isLoadingGenres || isLoadingUserMoviesList || isFetchingUserMoviesList;
+  const filteredMovies = movies?.filter((movie) => userMoviesList?.includes(movie.id)) ?? [];
 
   useEffect(() => {
     refetchUserMoviesList();
   }, [refetchUserMoviesList]);
-
-  const moviesByGenre: Record<string, Movie[]> = {};
 
   movies?.forEach((movie) => {
     const genreId = movie.genre;
@@ -39,7 +41,7 @@ export default function Home() {
     moviesByGenre[genreId].push(movie);
   });
 
-  const filteredMovies = movies?.filter((movie) => userMoviesList?.includes(movie.id)) ?? [];
+  const comingSoonMovies = movies?.filter((movie) => new Date(movie.availableDate) > new Date()) ?? [];
 
   const highlightedMovies = useMemo(() => {
     return (movies || []).filter((movie) => movie.highlighted);
@@ -51,10 +53,7 @@ export default function Home() {
 
   const saveDataToContext = (movieId: string) => {
     setMovieIdContext(movieId);
-    setListOfMovieIdsContext(userMoviesList ?? []);
   };
-
-  const showLoadingSpinner = isLoadingMovies || isLoadingGenres || isLoadingUserMoviesList || isFetchingUserMoviesList;
 
   return (
     <>
@@ -65,8 +64,8 @@ export default function Home() {
           <HeroSlider movies={highlightedMovies} onButtonClick={saveDataToContext} />
           <PageContainer>
             <div className={styles['filter-buttons']}>
-              {genres?.map((genre) => (
-                <div key={`filter-buttons-${genre.id}`} className={styles['filter-buttons__button-container']}>
+              {genres?.map((genre, index) => (
+                <div key={`filter-buttons-${genre.id}-${index}`} className={styles['filter-buttons__button-container']}>
                   <Button
                     variant={genre.id === selectedGenre ? 'primary' : 'secondary'}
                     onClick={() => handleGenreClick(genre.id)}>
@@ -77,8 +76,8 @@ export default function Home() {
             </div>
             <div className={styles['carousel-list']}>
               {/* Show movies by genre */}
-              {genres?.map((genre) => (
-                <div key={`carousel-${genre.id}`}>
+              {genres?.map((genre, index) => (
+                <div key={`carousel-${genre.id}-${index}`}>
                   {selectedGenre === null || selectedGenre === genre.id ? (
                     <div className={styles['carousel-list__container']}>
                       <h2 className={styles['carousel-list__container__title']}>{genre.name}</h2>
@@ -87,6 +86,18 @@ export default function Home() {
                   ) : null}
                 </div>
               ))}
+              {/* Show coming soon movies list */}
+              {comingSoonMovies.length > 0 && (
+                <div className={styles['carousel-list__container']}>
+                  <h2 className={styles['carousel-list__container__title']}>Coming Soon</h2>
+                  <Carousel
+                    movies={comingSoonMovies}
+                    imageWidth={400}
+                    imageHeight={260}
+                    onLinkClick={saveDataToContext}
+                  />
+                </div>
+              )}
               {/* Show user movies list */}
               {filteredMovies.length > 0 && (
                 <div className={styles['carousel-list__container']}>
