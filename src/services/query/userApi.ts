@@ -24,7 +24,6 @@ export const userApi = baseApi.injectEndpoints({
         url: '/films/user',
         method: 'GET',
       }),
-      keepUnusedDataFor: 0,
     }),
   }),
 });
