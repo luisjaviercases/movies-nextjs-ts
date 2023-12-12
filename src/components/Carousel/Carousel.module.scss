@@ -54,6 +54,7 @@ $ultra-desktop_parent-padding-right: 8.125rem;
 
     &__img {
       border-radius: 1rem;
+      object-fit: cover;
     }
 
     &:first-child {

@@ -9,10 +9,12 @@ import { Movie } from '@/models/movie';
 
 interface CarouselProps {
   movies: Movie[];
+  imageWidth?: number;
+  imageHeight?: number;
   onLinkClick?: (movieId: string) => void;
 }
 
-const Carousel: FC<CarouselProps> = ({ movies, onLinkClick }) => {
+const Carousel: FC<CarouselProps> = ({ movies, onLinkClick, imageWidth = 261, imageHeight = 386 }) => {
   const galleryRef = useHorizontalScroll();
 
   const handleMovieClick = (movieId: string) => {
@@ -30,8 +32,8 @@ const Carousel: FC<CarouselProps> = ({ movies, onLinkClick }) => {
           data-testid='carousel--link'>
           <Image
             className={styles['container__item__img']}
-            width={261}
-            height={386}
+            width={imageWidth}
+            height={imageHeight}
             src={movie.thumbnail}
             alt={`Image ${movie.title}`}
           />
