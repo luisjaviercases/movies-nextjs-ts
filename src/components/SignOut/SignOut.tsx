@@ -33,6 +33,7 @@ const SignOut: FC = () => {
       await signOut();
       await removeCookie('userToken');
       router.push('/login');
+      window.history.replaceState(null, '', '/login');
     } catch (error) {
       console.error('Error:', error);
     }

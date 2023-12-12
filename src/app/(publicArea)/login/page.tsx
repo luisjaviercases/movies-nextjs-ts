@@ -18,6 +18,7 @@ export default function Login() {
       const { token } = await login({ email: values.username, password: values.password }).unwrap();
       await createCookie('userToken', token, { httpOnly: true, path: '/' });
       router.push('/');
+      window.history.replaceState(null, '', '/');
     } catch (error) {
       console.error('Error:', error);
     }
