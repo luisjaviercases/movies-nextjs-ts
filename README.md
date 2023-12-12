@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS appp with JWT auth using Typescript
 
-## Getting Started
+NextJS application with JWT auth that shows movies and navigation between them, showing each details.
 
-First, run the development server:
+Make API requests and cache them using Redux Toolkit.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+CSS Modules and SASS is used for the styles.
+
+In this document you will be able to see the structure of the folders and some of the libraries that have been used to develop the project.
+
+## User test to do login request
+
+To log in to the application you must use the following user data:
+
+User: jason.watts@driverevel.com
+Password: 1234
+
+## Development scripts
+
+### Install dependencies
+
+```shell
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Compiles and hot-reloads for development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Compiles and minifies for production
 
-## Learn More
+```shell
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Run your unit tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```shell
+npm run test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Folder structure
 
-## Deploy on Vercel
+```
+<project-root>
+├─ 📁 .husky
+│   ├─ pre-commit
+│   └─ pre-push
+├─ 📁 node_modules
+├─ 📁 public
+│   ├─ 📂 icons
+│   ├─ 📂 images
+├─ 📂 src
+│   ├─ 📂 app
+│   │   └─ 📁 pageName
+│   │      └─ page.tsx
+│   │   └─ layout.tsx
+│   ├─ 📂 components
+│   │   └─ 📁 ComponentName
+│   │      └─ ComponentName.module.scss
+│   │      └─ ComponentName.tsx
+│   │      └─ ComponentName.test.tsx
+│   ├─ 📂 constants
+│   ├─ 📂 context
+│   ├─ 📂 hooks
+│   │   └─ useCustom.ts
+│   ├─ 📂 models
+│   ├─ 📁 routes
+│   ├─ 📁 services
+│   ├─ 📁 store
+│   ├─ 📁 styles
+│   ├─ 📂 tests
+│   └─   └─ setup.js
+│   └─ middleware.ts
+├─ .env
+├─ .eslintrc.json
+├─ .gitignore
+├─ .lintstagedrc
+├─ .prettierrc
+├─ next.config.js
+├─ package.json
+├─ vitest.config.mts
+└─ <more project root files>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### React
+
+React version 18
+
+### Next
+
+Next version 14.0.3
+
+### Typescript
+
+Typescript version 5
+
+### Redux
+
+Redux version 9.0.2
+Redux Toolkit version 2.0.1
+
+### Testing
+
+We use Vitest and React testing library to do unit tests
+
+### Husky & Lint-Staged
+
+Husky Version 8.0.3
+Lint-staged Version 15.2.0
+
+Improved the development flow using Git Hooks that will be executed before commits and push. It will check if
+the linter passes correctly and tests give OK
+
+This ensure that the code you upload to repository has a minimum quality
