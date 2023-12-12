@@ -27,7 +27,8 @@ const Carousel: FC<CarouselProps> = ({ movies }) => {
           className={styles['container__item']}
           key={`carousel-${movie.id}`}
           href={`/movies/${movie.title}`}
-          onClick={() => handleMovieClick(movie.id)}>
+          onClick={() => handleMovieClick(movie.id)}
+          data-testid='carousel--link'>
           <Image
             className={styles['container__item__img']}
             width={261}
