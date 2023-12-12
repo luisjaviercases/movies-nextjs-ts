@@ -9,13 +9,17 @@ import Rating from '@/components/Rating/Rating';
 import { useMediaQuery } from 'react-responsive';
 import { useMovieContext } from '@/context/MovieContext';
 import { useGetMovieByIdQuery } from '@/services/query/moviesApi';
+import { useGetGenresQuery } from '@/services/query/genresApi';
 import styles from './page.module.scss';
 
 export default function MovieDetails() {
   const { movieId, listOfMovieIds } = useMovieContext();
+  const { data: genres } = useGetGenresQuery();
   const { data: movie, isLoading: isLoadingMovie } = useGetMovieByIdQuery(movieId);
   const isTabletMobileSmallDesktop = useMediaQuery({ query: '(max-width: 1024px)' });
   const isComingSoonMovie = movie?.availableDate ? new Date(movie.availableDate) > new Date() : false;
+
+  const currentMovieGenreName = genres?.find((genre) => genre.id === movie?.genre)?.name;
 
   const actionButtons = () => {
     return (
@@ -53,7 +57,7 @@ export default function MovieDetails() {
                     </div>
                     <div className={styles['content__resume__row']}>
                       <span className={styles['content__resume__row__title']}>Genre:</span>{' '}
-                      <span className={styles['content__resume__row__description']}>{movie.genre}</span>
+                      <span className={styles['content__resume__row__description']}>{currentMovieGenreName}</span>
                     </div>
                   </div>
                   <h1 className={styles['content__title']}>{movie.title}</h1>
