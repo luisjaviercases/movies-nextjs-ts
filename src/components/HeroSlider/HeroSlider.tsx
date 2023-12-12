@@ -1,7 +1,6 @@
 'use client';
 
 import { Movie } from '@/models/movie';
-import { useMovieContext } from '@/context/MovieContext';
 import React, { useState, useEffect } from 'react';
 import Button from '@/components/Button/Button';
 import styles from './HeroSlider.module.scss';
@@ -11,12 +10,12 @@ import { useRouter } from 'next/navigation';
 interface HeroSliderProps {
   movies: Movie[];
   interval?: number;
+  onButtonClick?: (movieId: string) => void;
 }
 
-const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 3000 }) => {
+const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 1000, onButtonClick }) => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const { setMovieContext } = useMovieContext();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -33,7 +32,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 3000 }) => {
   };
 
   const handleButtonClick = (movieId: string) => {
-    setMovieContext(movieId);
+    if (onButtonClick) onButtonClick(movieId);
     router.push(`/movies/${currentMovie.title}`);
   };
 
