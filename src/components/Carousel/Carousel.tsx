@@ -2,7 +2,6 @@
 
 import React, { FC } from 'react';
 import { useHorizontalScroll } from '@/hooks/useHorizontalScroll';
-import { useMovieContext } from '@/context/MovieContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Carousel.module.scss';
@@ -10,14 +9,14 @@ import { Movie } from '@/models/movie';
 
 interface CarouselProps {
   movies: Movie[];
+  onLinkClick?: (movieId: string) => void;
 }
 
-const Carousel: FC<CarouselProps> = ({ movies }) => {
+const Carousel: FC<CarouselProps> = ({ movies, onLinkClick }) => {
   const galleryRef = useHorizontalScroll();
-  const { setMovieContext } = useMovieContext();
 
   const handleMovieClick = (movieId: string) => {
-    setMovieContext(movieId);
+    if (onLinkClick) onLinkClick(movieId);
   };
 
   return (
@@ -25,7 +24,7 @@ const Carousel: FC<CarouselProps> = ({ movies }) => {
       {movies.map((movie) => (
         <Link
           className={styles['container__item']}
-          key={`carousel-${movie.id}`}
+          key={`carousel-link-${movie.id}`}
           href={`/movies/${movie.title}`}
           onClick={() => handleMovieClick(movie.id)}
           data-testid='carousel--link'>
