@@ -43,7 +43,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 1000, onButt
         <h1 className={styles['container__content__title']}>{currentMovie.title}</h1>
         <p className={styles['container__content__description']}>{currentMovie.description}</p>
         <div className={styles['container__content__custom-button']}>
-          <Button size='big' onClick={() => handleButtonClick(currentMovie.id)}>
+          <Button size='big' onClick={() => handleButtonClick(currentMovie.id)} role='hero-slider--button'>
             Discover
           </Button>
         </div>
