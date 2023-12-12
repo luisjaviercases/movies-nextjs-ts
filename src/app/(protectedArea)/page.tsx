@@ -54,9 +54,11 @@ export default function Home() {
     setListOfMovieIdsContext(userMoviesList ?? []);
   };
 
+  const showLoadingSpinner = isLoadingMovies || isLoadingGenres || isLoadingUserMoviesList || isFetchingUserMoviesList;
+
   return (
     <>
-      {isLoadingMovies || isLoadingGenres || isLoadingUserMoviesList || isFetchingUserMoviesList ? (
+      {showLoadingSpinner ? (
         <LoadingSpinner />
       ) : (
         <>
