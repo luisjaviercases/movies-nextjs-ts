@@ -10,9 +10,9 @@ const Footer: FC<FooterProps> = ({ links }) => {
   return (
     <footer className={styles.footer}>
       {links.map((column, columnIndex) => (
-        <div key={columnIndex} className={styles['footer__column']}>
+        <div key={`footer-${columnIndex}`} className={styles['footer__column']}>
           {column.map((link, linkIndex) => (
-            <FooterLink key={linkIndex} {...link} />
+            <FooterLink key={`footer-link-${linkIndex}`} {...link} />
           ))}
         </div>
       ))}

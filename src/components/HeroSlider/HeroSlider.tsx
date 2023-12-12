@@ -47,9 +47,9 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 1000, onButt
         </div>
       </div>
       <div className={styles['container__bullets']}>
-        {movies.map((_, index) => (
+        {movies.map((movie, index) => (
           <button
-            key={`hero-slider-bullet-${index}`}
+            key={`hero-slider-bullet-${movie.id}-${index}`}
             className={`${styles['container__bullets__bullet']} ${
               index === activeIndex ? styles['container__bullets__bullet--active'] : ''
             }`}
