@@ -10,11 +10,13 @@ import { useMediaQuery } from 'react-responsive';
 import { useMovieContext } from '@/context/MovieContext';
 import { useGetMovieByIdQuery } from '@/services/query/moviesApi';
 import { useGetGenresQuery } from '@/services/query/genresApi';
+import { useGetUserMoviesListQuery } from '@/services/query/userApi';
 import styles from './page.module.scss';
 
 export default function MovieDetails() {
-  const { movieId, listOfMovieIds } = useMovieContext();
+  const { movieId } = useMovieContext();
   const { data: genres } = useGetGenresQuery();
+  const { data: userMoviesList } = useGetUserMoviesListQuery();
   const { data: movie, isLoading: isLoadingMovie } = useGetMovieByIdQuery(movieId);
   const isTabletMobileSmallDesktop = useMediaQuery({ query: '(max-width: 1024px)' });
   const isComingSoonMovie = movie?.availableDate ? new Date(movie.availableDate) > new Date() : false;
@@ -45,7 +47,7 @@ export default function MovieDetails() {
               <PageContainer>
                 {isTabletMobileSmallDesktop && <div className={styles.actions}>{actionButtons()}</div>}
                 <div className={styles.content}>
-                  <FavoriteButton movieId={movieId ?? null} moviesList={listOfMovieIds ?? []} />
+                  <FavoriteButton movieId={movieId ?? null} moviesList={userMoviesList ?? []} />
                   <div className={styles['content__resume']}>
                     <div className={styles['content__resume__row']}>
                       <span className={styles['content__resume__row__title']}>Rating:</span>{' '}
