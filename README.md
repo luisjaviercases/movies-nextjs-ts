@@ -1,3 +1,5 @@
+Important: December 13, 2023: Optimized for Google Chrome. We are working on adapting it completely to other browsers.
+
 # NextJS appp with JWT auth using Typescript
 
 NextJS application with JWT auth that shows movies and navigation between them, showing each details.
