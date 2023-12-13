@@ -12,6 +12,7 @@ import { useGetUserMoviesListQuery } from '@/services/query/userApi';
 import { useMovieContext } from '@/context/MovieContext';
 import styles from './page.module.scss';
 import Carousel from '@/components/Carousel/Carousel';
+import React from 'react';
 
 export default function Home() {
   const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
@@ -77,14 +78,14 @@ export default function Home() {
             <div className={styles['carousel-list']}>
               {/* Show movies by genre */}
               {genres?.map((genre, index) => (
-                <div key={`carousel-${genre.id}-${index}`}>
+                <React.Fragment key={`carousel-${genre.id}-${index}`}>
                   {selectedGenre === null || selectedGenre === genre.id ? (
                     <div className={styles['carousel-list__container']}>
                       <h2 className={styles['carousel-list__container__title']}>{genre.name}</h2>
                       <Carousel movies={moviesByGenre[genre.id]} onLinkClick={saveDataToContext} />
                     </div>
                   ) : null}
-                </div>
+                </React.Fragment>
               ))}
               {/* Show coming soon movies list */}
               {comingSoonMovies.length > 0 && (
