@@ -30,12 +30,12 @@ const Carousel: FC<CarouselProps> = ({
 
   return (
     <div className={styles.container} ref={galleryRef}>
-      {movies.map((movie, index) => (
+      {movies?.map((movie, index) => (
         <Link
           className={styles['container__item']}
-          key={`carousel-link-${movie.id}-${index}`}
+          key={`carousel-link-${movie._id}-${index}`}
           href={`/movies/${movie.title}`}
-          onClick={() => handleMovieClick(movie.id)}
+          onClick={() => handleMovieClick(movie._id)}
           data-testid='carousel--link'>
           <Image
             className={styles['container__item__img']}

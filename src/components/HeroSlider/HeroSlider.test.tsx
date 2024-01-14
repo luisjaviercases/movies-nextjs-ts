@@ -12,7 +12,7 @@ describe('Component: HeroSlider', () => {
   it('should call onButtonClick', () => {
     const movies = [
       {
-        id: '1',
+        _id: '1',
         title: 'Movie 1',
         description: '',
         genre: '',
@@ -24,7 +24,7 @@ describe('Component: HeroSlider', () => {
         highlighted: false,
       },
       {
-        id: '2',
+        _id: '2',
         title: 'Movie 2',
         description: '',
         genre: '',
@@ -43,6 +43,6 @@ describe('Component: HeroSlider', () => {
 
     const discoverButton = screen.getByRole('hero-slider--button');
     fireEvent.click(discoverButton);
-    expect(handleButtonClick).toHaveBeenCalledWith(movies[0].id);
+    expect(handleButtonClick).toHaveBeenCalledWith(movies[0]._id);
   });
 });

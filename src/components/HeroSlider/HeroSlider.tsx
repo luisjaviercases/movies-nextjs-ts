@@ -37,29 +37,33 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ movies, interval = 1000, onButt
   };
 
   return (
-    <div className={styles.container}>
-      <HeroImage src={currentMovie.poster} alt={`${currentMovie.title} poster film`} />
-      <div className={styles['container__content']}>
-        <h1 className={styles['container__content__title']}>{currentMovie.title}</h1>
-        <p className={styles['container__content__description']}>{currentMovie.description}</p>
-        <div className={styles['container__content__custom-button']}>
-          <Button size='big' onClick={() => handleButtonClick(currentMovie.id)} role='hero-slider--button'>
-            Discover
-          </Button>
+    <>
+      {currentMovie && (
+        <div className={styles.container}>
+          <HeroImage src={currentMovie.poster} alt={`${currentMovie.title} poster film`} />
+          <div className={styles['container__content']}>
+            <h1 className={styles['container__content__title']}>{currentMovie.title}</h1>
+            <p className={styles['container__content__description']}>{currentMovie.description}</p>
+            <div className={styles['container__content__custom-button']}>
+              <Button size='big' onClick={() => handleButtonClick(currentMovie._id)} role='hero-slider--button'>
+                Discover
+              </Button>
+            </div>
+          </div>
+          <div className={styles['container__bullets']}>
+            {movies.map((movie, index) => (
+              <button
+                key={`hero-slider-bullet-${movie._id}-${index}`}
+                className={`${styles['container__bullets__bullet']} ${
+                  index === activeIndex ? styles['container__bullets__bullet--active'] : ''
+                }`}
+                onClick={() => handleBulletClick(index)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className={styles['container__bullets']}>
-        {movies.map((movie, index) => (
-          <button
-            key={`hero-slider-bullet-${movie.id}-${index}`}
-            className={`${styles['container__bullets__bullet']} ${
-              index === activeIndex ? styles['container__bullets__bullet--active'] : ''
-            }`}
-            onClick={() => handleBulletClick(index)}
-          />
-        ))}
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

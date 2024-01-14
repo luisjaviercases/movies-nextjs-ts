@@ -22,7 +22,7 @@ export default function MovieDetails() {
   const isTabletMobileSmallDesktop = useMediaQuery({ query: '(max-width: 1024px)' });
   const isComingSoonMovie = movie?.availableDate ? new Date(movie.availableDate) > new Date() : false;
 
-  const currentMovieGenreName = genres?.find((genre) => genre.id === movie?.genre)?.name;
+  const currentMovieGenreName = genres?.find((genre) => genre._id === movie?.genre)?.name;
 
   const actionButtons = () => {
     return (

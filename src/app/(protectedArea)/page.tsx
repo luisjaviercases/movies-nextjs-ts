@@ -28,7 +28,7 @@ export default function Home() {
 
   const moviesByGenre: Record<string, Movie[]> = {};
   const showLoadingSpinner = isLoadingMovies || isLoadingGenres || isLoadingUserMoviesList || isFetchingUserMoviesList;
-  const filteredMovies = movies?.filter((movie) => userMoviesList?.includes(movie.id)) ?? [];
+  const filteredMovies = movies?.filter((movie) => userMoviesList?.includes(movie._id)) ?? [];
 
   useEffect(() => {
     refetchUserMoviesList();
@@ -66,10 +66,12 @@ export default function Home() {
           <PageContainer>
             <div className={styles['filter-buttons']}>
               {genres?.map((genre, index) => (
-                <div key={`filter-buttons-${genre.id}-${index}`} className={styles['filter-buttons__button-container']}>
+                <div
+                  key={`filter-buttons-${genre._id}-${index}`}
+                  className={styles['filter-buttons__button-container']}>
                   <Button
-                    variant={genre.id === selectedGenre ? 'primary' : 'secondary'}
-                    onClick={() => handleGenreClick(genre.id)}>
+                    variant={genre._id === selectedGenre ? 'primary' : 'secondary'}
+                    onClick={() => handleGenreClick(genre._id)}>
                     {genre.name}
                   </Button>
                 </div>
@@ -78,11 +80,11 @@ export default function Home() {
             <div className={styles['carousel-list']}>
               {/* Show movies by genre */}
               {genres?.map((genre, index) => (
-                <React.Fragment key={`carousel-${genre.id}-${index}`}>
-                  {selectedGenre === null || selectedGenre === genre.id ? (
+                <React.Fragment key={`carousel-${genre._id}-${index}`}>
+                  {selectedGenre === null || selectedGenre === genre._id ? (
                     <div className={styles['carousel-list__container']}>
                       <h2 className={styles['carousel-list__container__title']}>{genre.name}</h2>
-                      <Carousel movies={moviesByGenre[genre.id]} onLinkClick={saveDataToContext} />
+                      <Carousel movies={moviesByGenre[genre._id]} onLinkClick={saveDataToContext} />
                     </div>
                   ) : null}
                 </React.Fragment>
