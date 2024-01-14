@@ -11,15 +11,7 @@ export const authApi = baseApi.injectEndpoints({
         };
       },
     }),
-    authSignOut: builder.query<void, void>({
-      query: () => {
-        return {
-          url: '/films/auth/sign-out',
-          method: 'get',
-        };
-      },
-    }),
   }),
 });
 
-export const { useAuthSignInMutation, useLazyAuthSignOutQuery } = authApi;
+export const { useAuthSignInMutation } = authApi;
