@@ -1,8 +1,14 @@
 Important: December 13, 2023: Optimized for Google Chrome. We are working on adapting it completely to other browsers.
 
+# First steps
+
+This is the front-end part of the Movies project. For its operation it is necessary to download and launch the REST API created and which can be viewed at the following link:
+
+https://github.com/luisjaviercases/movies-nodejs-mongodb-api
+
 # NextJS appp with JWT auth using Typescript
 
-NextJS application with JWT auth that shows movies and navigation between them, showing each details.
+NextJS application with JWT auth that shows movies and navigation between them, showing each details. Fully responsive and adaptable to different device sizes
 
 Make API requests and cache them using Redux Toolkit.
 
@@ -12,10 +18,10 @@ In this document you will be able to see the structure of the folders and some o
 
 ## User test to do login request
 
-To log in to the application you must use the following user data:
+To log in to the application you must launch backend part of the project and then, use the following user data:
 
-User: jason.watts@driverevel.com
-Password: 1234
+User: test@test.com
+Password: test
 
 ## Development scripts
 
