@@ -6,12 +6,6 @@ This is the front-end part of the Movies project. For its operation it is necess
 
 https://github.com/luisjaviercases/movies-nodejs-mongodb-api
 
-# Design
-
-To create this front, we used a responsive design made in Figma.
-
-You can see this design in the following link: https://www.figma.com/file/izvm1mmeGUZe3Wjka0SgZA/Movies?type=design&node-id=0-1&mode=design&t=Ds5iNrgckKPzkprX-0
-
 # NextJS app with JWT auth using Typescript
 
 NextJS application with JWT auth that shows movies and navigation between them, showing each details. Fully responsive and adaptable to different device sizes
@@ -21,6 +15,12 @@ Make API requests and cache them using Redux Toolkit.
 CSS Modules and SASS is used for the styles.
 
 In this document you will be able to see the structure of the folders and some of the libraries that have been used to develop the project.
+
+## Design
+
+To create this front, we used a responsive design made in Figma.
+
+You can see this design in the following link: https://www.figma.com/file/izvm1mmeGUZe3Wjka0SgZA/Movies?type=design&node-id=0-1&mode=design&t=Ds5iNrgckKPzkprX-0
 
 ## User test to do login request
 
